@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alberta Wildfires 2006–2025</title>
+  <meta name="description" content="Interactive map and charts of every recorded wildfire in Alberta's forest protection area since 2006.">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Alberta Wildfires</h1>
+      <p id="subtitle">Every wildfire in Alberta's forest protection area, 2006–2025</p>
+    </div>
+    <div class="filters">
+      <label>Year
+        <select id="year"></select>
+      </label>
+      <label>Cause
+        <select id="cause">
+          <option value="all">All causes</option>
+          <option value="Lightning">Lightning</option>
+          <option value="Human">Human-caused</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section class="kpis">
+      <div class="kpi"><span>Fires</span><b id="k-fires">–</b></div>
+      <div class="kpi"><span>Hectares burned</span><b id="k-ha">–</b></div>
+      <div class="kpi"><span>Human-caused</span><b id="k-human">–</b></div>
+      <div class="kpi"><span>Median crew response</span><b id="k-response">–</b></div>
+    </section>
+
+    <section class="map-row">
+      <div class="panel map-panel">
+        <div id="map"></div>
+        <div class="legend">
+          <span><i style="background:var(--lightning)"></i>Lightning</span>
+          <span><i style="background:var(--human)"></i>Human</span>
+          <span><i style="background:var(--unknown)"></i>Undetermined</span>
+          <span class="muted">Circle size = area burned</span>
+        </div>
+      </div>
+      <div class="panel list-panel">
+        <h2>Largest fires</h2>
+        <ol id="largest"></ol>
+      </div>
+    </section>
+
+    <section class="charts">
+      <div class="panel wide">
+        <h2>Hectares burned by year <small>click a bar to filter</small></h2>
+        <div class="chart"><canvas id="c-years"></canvas></div>
+      </div>
+      <div class="panel">
+        <h2>Fires by month</h2>
+        <div class="chart"><canvas id="c-months"></canvas></div>
+      </div>
+      <div class="panel">
+        <h2>Top causes</h2>
+        <div class="chart"><canvas id="c-causes"></canvas></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Data: <a href="https://open.alberta.ca/opendata/wildfire-data">Government of Alberta, Historical wildfire data</a>
+    · <a href="https://github.com/shucab-lane/alberta-wildfires">Source on GitHub</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
